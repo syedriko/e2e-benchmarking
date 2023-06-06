@@ -9,6 +9,6 @@ if [[ ${DEPLOY_LOGGING} == "true" ]]; then
 fi
 run_workload
 
-remove_benchmark_operator
+#remove_benchmark_operator
 
 exit $?

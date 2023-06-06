@@ -49,28 +49,28 @@ run_workload() {
 
   # Add all viable options to the yaml
   if [[ ${ES_BACKEND_URL} != "" ]]; then
-    echo "    es_url: "$ES_BACKEND_URL >> log_generator_$timestamp.yaml
+    echo "      es_url: "$ES_BACKEND_URL >> log_generator_$timestamp.yaml
   fi
   if [[ ${ES_BACKEND_TOKEN} != "" ]]; then
-    echo "    es_token: "$ES_BACKEND_TOKEN >> log_generator_$timestamp.yaml
+    echo "      es_token: "$ES_BACKEND_TOKEN >> log_generator_$timestamp.yaml
   fi
   if [[ ${ES_BACKEND_INDEX} != "" ]]; then
-    echo "    es_index: "$ES_BACKEND_INDEX >> log_generator_$timestamp.yaml
+    echo "      es_index: "$ES_BACKEND_INDEX >> log_generator_$timestamp.yaml
   fi
   if [[ ${ES_BACKEND_INDEX} != "" ]]; then
-    echo "    es_index: "$ES_BACKEND_INDEX >> log_generator_$timestamp.yaml
+    echo "      es_index: "$ES_BACKEND_INDEX >> log_generator_$timestamp.yaml
   fi
   if [[ ${CLOUDWATCH_LOG_GROUP} != "" ]]; then
-    echo "    cloudwatch_log_group: "$CLOUDWATCH_LOG_GROUP >> log_generator_$timestamp.yaml
+    echo "      cloudwatch_log_group: "$CLOUDWATCH_LOG_GROUP >> log_generator_$timestamp.yaml
   fi
   if [[ ${AWS_REGION} != "" ]]; then
-    echo "    aws_region: "$AWS_REGION >> log_generator_$timestamp.yaml
+    echo "      aws_region: "$AWS_REGION >> log_generator_$timestamp.yaml
   fi
   if [[ ${AWS_ACCESS_KEY} != "" ]]; then
-    echo "    aws_access_key: "$AWS_ACCESS_KEY >> log_generator_$timestamp.yaml
+    echo "      aws_access_key: "$AWS_ACCESS_KEY >> log_generator_$timestamp.yaml
   fi
   if [[ ${AWS_SECRET_KEY} != "" ]]; then
-    echo "    aws_secret_key: "$AWS_SECRET_KEY >> log_generator_$timestamp.yaml
+    echo "      aws_secret_key: "$AWS_SECRET_KEY >> log_generator_$timestamp.yaml
   fi
   if [[ ${NODE_SELECTOR_KEY} != "" ]]; then
     echo "    label:" >> log_generator_$timestamp.yaml

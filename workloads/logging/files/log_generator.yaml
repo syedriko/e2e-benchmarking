@@ -13,6 +13,7 @@ spec:
   workload:
     name: log_generator
     args:
+      debug: true
       pod_count: ${POD_COUNT}
       size: ${MESSAGE_SIZE}
       messages_per_second: ${MESSAGES_PER_SECOND}

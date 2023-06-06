@@ -34,6 +34,9 @@ function install() {
   else
     log "Creating cluster logging and elastisearch resources"
     envsubst < ./files/logging-stack.yml | oc create -f -
+    log "Waiting for the logging operator to be up and running"
+    sleep 60
+    envsubst < ./files/logging-instances.yaml | oc create -f -
   fi
 }
 
@@ -67,12 +70,12 @@ oc wait --for=condition=available -n openshift-logging deployment/cluster-loggin
 log "Checking the status"
 for deployment in $( oc get deployments -n openshift-logging | awk 'NR!=1{print $1}'); do oc wait --for=condition=available -n openshift-logging deployment/$deployment --timeout=180s; done
 wait_time=0
-while [[ $( oc get daemonset.apps/fluentd -n openshift-logging -o=jsonpath='{.status.desiredNumberScheduled}' ) != $( oc get daemonset.apps/fluentd -n openshift-logging -o=jsonpath='{.status.numberReady}' ) ]]; do
-  log "Waiting for fluentd daemonset"
+while [[ $( oc get daemonset.apps/collector -n openshift-logging -o=jsonpath='{.status.desiredNumberScheduled}' ) != $( oc get daemonset.apps/collector -n openshift-logging -o=jsonpath='{.status.numberReady}' ) ]]; do
+  log "Waiting for collector daemonset"
   sleep 5
   wait_time=$((wait_time+5))
   if [[ $wait_time -ge $TIMEOUT ]]; then
-    log "Fluentd daemonset is not ready after $TIMEOUT, please check. Exiting"
+    log "collector daemonset is not ready after $TIMEOUT, please check. Exiting"
     exit 1
   fi
 done
